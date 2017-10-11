@@ -1,27 +1,24 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, FlatList, Text } from "react-native";
 import { connect } from "react-redux";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-const DeckItem = ({ deck }) => {
-  return (
-    <View style={styles.container}>
-      <MaterialCommunityIcons name="cards-outline" size={170} />
-      <Text>{deck.title}</Text>
-    </View>
-  );
-};
+import { DeckListItem } from "./";
 
 class DeckList extends Component {
+  handlePress() {
+    alert("Hello");
+  }
   render() {
     const decks = Object.keys(this.props.decks);
     if (decks.length) {
       return (
         <View style={styles.container}>
           <Text style={styles.title}>Decks</Text>
-          {decks.map(deck => (
-            <DeckItem key={deck} deck={this.props.decks[deck]} />
-          ))}
+          <FlatList
+            data={Object.keys(this.props.decks)}
+            renderItem={DeckListItem}
+            keyExtractor={item => item}
+          />
         </View>
       );
     }
@@ -38,6 +35,22 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
+  },
+  deckListItemContainer: {
+    backgroundColor: "#e53224",
+    borderRadius: 10,
+    marginBottom: 15,
+    width: 300
+  },
+  icon: {
+    color: "white"
+  },
+  deckTitle: {
+    fontSize: 50,
+    color: "white",
+    marginTop: -40,
+    marginBottom: 10,
+    backgroundColor: "transparent"
   }
 });
 

@@ -39,6 +39,14 @@ const testState = {
           'An expression in a programming language is a combination of one or more explicit values, constants, variables, operators, and functions that the programming language interprets (according to its particular rules of precedence and of association) and computes to produce ("to return", in a stateful environment) another value. '
       }
     ]
+  },
+  python: {
+    title: "Python",
+    questions: []
+  },
+  angular: {
+    title: "Angular",
+    questions: []
   }
 };
 const initialState = {

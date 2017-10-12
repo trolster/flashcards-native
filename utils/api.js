@@ -1,10 +1,11 @@
 import { AsyncStorage } from "react-native";
+import setDummyData from "./setDummyData";
 
-const STORAGE_KEY = "udaciCards";
+const STORAGE_KEY = "udaciCards:decks";
 
 export function getDecks() {
   return AsyncStorage.getItem(STORAGE_KEY, (err, result) => {
-    return JSON.parse(result);
+    return setDummyData(STORAGE_KEY, result);
   });
 }
 

@@ -12,7 +12,16 @@ function deck(state = initialState, action) {
         decks: action.decks
       };
     case ADD_DECK:
-      return {};
+      return {
+        ...state,
+        decks: {
+          ...state.decks,
+          [action.title]: {
+            title: action.title,
+            questions: []
+          }
+        }
+      };
     case ADD_CARD:
       return {};
     default:

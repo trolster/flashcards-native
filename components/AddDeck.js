@@ -26,13 +26,10 @@ class AddDeck extends Component {
 
   addDeck = () => {
     const { title } = this.state;
-    saveNewDeck(title)
-      .then(data => {
-        this.props.dispatch(addDeck(data));
-        this.props.navigation.navigate("Deck", { title: title });
-      })
-      .catch(e => console.log("error save to deck", e));
+    this.props.dispatch(addDeck(title));
     this.setState({ title: "" });
+    this.props.navigation.navigate("Deck", { title });
+    saveNewDeck(title);
   };
 
   render() {

@@ -1,5 +1,4 @@
 import { RECEIVE_DECKS, ADD_DECK, ADD_CARD } from "../actions";
-import testState from "../utils/testState.json";
 
 const initialState = {
   decks: {}

@@ -2,79 +2,48 @@ import React from "react";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { TabNavigator, StackNavigator } from "react-navigation";
-import { View, StatusBar, Platform } from "react-native";
+import { View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import reducer from "./reducers";
 import { AddDeck, AddCard, DeckList, Deck, Quiz } from "./components";
 
 const store = createStore(reducer);
 
-const Tabs = TabNavigator(
-  {
-    DeckList: {
-      screen: DeckList,
-      navigationOptions: {
-        tabBarLabel: "Deck List",
-        tabBarIcon: ({ tintColor }) => (
-          <MaterialCommunityIcons name="cards" size={30} color={tintColor} />
-        )
-      }
-    },
-    AddDeck: {
-      screen: AddDeck,
-      navigationOptions: {
-        tabBarLabel: "New Deck",
-        tabBarIcon: ({ tintColor }) => (
-          <MaterialCommunityIcons
-            name="cards-outline"
-            size={30}
-            color={tintColor}
-          />
-        )
-      }
+const Tabs = TabNavigator({
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      tabBarLabel: "Deck List",
+      tabBarIcon: () => <MaterialCommunityIcons name="cards" size={30} />
     }
   },
-  {
-    tabBarOptions: {
-      activeTintColor: Platform.OS === "ios" ? "tomato" : "white",
-      style: {
-        height: 56,
-        backgroundColor: Platform.OS === "ios" ? "white" : "tomato",
-        shadowColor: "rgba(0, 0, 0, 0.24)",
-        shadowOffset: {
-          width: 0,
-          height: 3
-        },
-        shadowRadius: 6,
-        shadowOpacity: 1
-      }
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: "New Deck",
+      tabBarIcon: () => (
+        <MaterialCommunityIcons name="cards-outline" size={30} />
+      )
     }
   }
-);
-
-const navOptions = {
-  headerTintColor: "#FFF",
-  headerStyle: {
-    backgroundColor: "#1485ff"
-  }
-};
+});
 
 const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
-    navigationOptions: { ...navOptions, title: "FlashCards" }
+    navigationOptions: { title: "FlashCards" }
   },
   DeckList: {
-    screen: DeckList,
-    navigationOptions: navOptions
+    screen: DeckList
+  },
+  Deck: {
+    screen: Deck
   },
   AddCard: {
-    screen: AddCard,
-    navigationOptions: { ...navOptions, title: "Add Card" }
+    screen: AddCard
   },
   Quiz: {
-    screen: Quiz,
-    navigationOptions: { ...navOptions, title: "Quiz" }
+    screen: Quiz
   }
 });
 
@@ -83,7 +52,6 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={{ flex: 1 }}>
-          <StatusBar translucent barStyle="dark-content" />
           <MainNavigator />
         </View>
       </Provider>

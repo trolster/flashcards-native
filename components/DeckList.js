@@ -19,50 +19,29 @@ class DeckList extends Component {
   }
 
   render() {
-    // const decks = Object.keys(this.props.decks);
-    // if (decks.length) {
-    //   return (
-    //     <View style={styles.container}>
-    //       <Text style={styles.title}>Decks</Text>
-    //       <FlatList
-    //         data={Object.keys(this.props.decks)}
-    //         renderItem={DeckListItem}
-    //         keyExtractor={item => item}
-    //       />
-    //     </View>
-    //   );
-    // }
+    const decks = Object.keys(this.props.decks);
     return (
-      <Text>{JSON.stringify(Object.keys(this.props.decks), null, 2)}</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>Decks</Text>
+        <FlatList
+          data={Object.keys(this.props.decks)}
+          renderItem={DeckListItem}
+          keyExtractor={item => item}
+        />
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   title: {
-    marginTop: 50,
+    marginTop: 40,
     fontSize: 30
   },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
-  },
-  deckListItemContainer: {
-    backgroundColor: "#e53224",
-    borderRadius: 10,
-    marginBottom: 15,
-    width: 300
-  },
-  icon: {
-    color: "white"
-  },
-  deckTitle: {
-    fontSize: 50,
-    color: "white",
-    marginTop: -40,
-    marginBottom: 10,
-    backgroundColor: "transparent"
   }
 });
 

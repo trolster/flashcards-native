@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { TabNavigator, StackNavigator } from "react-navigation";
 import { View, StatusBar, Platform } from "react-native";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import reducer from "./reducers";
 import { AddDeck, AddCard, DeckList, Deck, Quiz } from "./components";
 
@@ -16,7 +16,7 @@ const Tabs = TabNavigator(
       navigationOptions: {
         tabBarLabel: "Deck List",
         tabBarIcon: ({ tintColor }) => (
-          <FontAwesome name="plus-square" size={30} color={tintColor} />
+          <MaterialCommunityIcons name="cards" size={30} color={tintColor} />
         )
       }
     },
@@ -25,17 +25,21 @@ const Tabs = TabNavigator(
       navigationOptions: {
         tabBarLabel: "New Deck",
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="ios-bookmarks" size={30} color={tintColor} />
+          <MaterialCommunityIcons
+            name="cards-outline"
+            size={30}
+            color={tintColor}
+          />
         )
       }
     }
   },
   {
     tabBarOptions: {
-      activeTintColor: Platform.OS === "ios" ? "purple" : "white",
+      activeTintColor: Platform.OS === "ios" ? "tomato" : "white",
       style: {
         height: 56,
-        backgroundColor: Platform.OS === "ios" ? "white" : "purple",
+        backgroundColor: Platform.OS === "ios" ? "white" : "tomato",
         shadowColor: "rgba(0, 0, 0, 0.24)",
         shadowOffset: {
           width: 0,

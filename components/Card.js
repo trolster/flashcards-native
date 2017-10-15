@@ -1,11 +1,75 @@
 import React, { Component } from "react";
-import { Text } from "react-native";
-import { connect } from "react-redux";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-class Card extends Component {
+export default class Card extends Component {
+  state = {
+    showAnswer: false
+  };
+
+  flipCard = () => {
+    this.setState({ showAnswer: !this.state.showAnswer });
+  };
+
   render() {
-    return <Text>{JSON.stringify(this.props, null, 4)}</Text>;
+    if (this.state.showAnswer) {
+      return (
+        <View style={styles.container}>
+          <Text>{this.props.card.answer}</Text>
+          <TouchableOpacity
+            style={styles.btnContainer}
+            onPress={() => {
+              this.flipCard();
+              this.props.handleAnswer(true);
+            }}
+          >
+            <Text style={styles.btnTitle}>Correct</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.btnContainer}
+            onPress={() => {
+              this.flipCard();
+              this.props.handleAnswer(false);
+            }}
+          >
+            <Text style={styles.btnTitle}>Incorrect</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Question:</Text>
+        <Text>{JSON.stringify(this.props.card.question)}</Text>
+        <TouchableOpacity style={styles.btnContainer} onPress={this.flipCard}>
+          <Text style={styles.btnTitle}>Show Answer</Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 }
 
-export default connect(state => state)(Card);
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 30
+  },
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  btnContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#333",
+    borderRadius: 5,
+    marginTop: 15,
+    width: 240,
+    maxHeight: 40
+  },
+  btnTitle: {
+    fontSize: 20,
+    color: "white",
+    marginTop: 10
+  }
+});

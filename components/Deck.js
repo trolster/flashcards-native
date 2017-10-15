@@ -23,7 +23,6 @@ class Deck extends Component {
 
   render() {
     const { decks, navigation } = this.props;
-    console.log(navigation);
     const deck = decks[navigation.state.params.deckId];
     const hasCards = !!deck.questions.length;
     return (

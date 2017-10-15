@@ -8,6 +8,7 @@ class Deck extends Component {
       title: "Deck"
     };
   };
+
   addNewQuestion = deckTitle => {
     this.props.navigation.navigate("AddCard", {
       deckTitle,

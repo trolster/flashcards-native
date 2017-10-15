@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import { connect } from "react-redux";
+import tolower from "lodash.tolower";
 import { addDeck } from "../actions";
 import { saveNewDeck } from "../utils/api";
 
@@ -26,9 +27,12 @@ class AddDeck extends Component {
 
   addDeck = () => {
     const { title } = this.state;
-    this.props.dispatch(addDeck(title));
+    const deckId = tolower(title);
+
     this.setState({ title: "" });
-    this.props.navigation.navigate("Deck", { title });
+    this.props.dispatch(addDeck(title));
+    this.props.navigation.navigate("Deck", { deckId });
+
     saveNewDeck(title);
   };
 

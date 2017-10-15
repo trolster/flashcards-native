@@ -11,10 +11,11 @@ export function getDecks() {
 }
 
 export function saveNewDeck(deckTitle) {
+  const deckId = tolower(deckTitle);
   return AsyncStorage.mergeItem(
     STORAGE_KEY,
     JSON.stringify({
-      [deckTitle]: {
+      [deckId]: {
         title: deckTitle,
         questions: []
       }

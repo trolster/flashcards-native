@@ -22,16 +22,8 @@ class AddDeck extends Component {
   state = {
     question: "",
     answer: "",
-    deck: ""
+    deck: this.props.navigation.state.params.deckTitle
   };
-
-  componentWillUnmount() {
-    this.setState({ question: "", answer: "", deck: "" });
-  }
-
-  componentDidMount() {
-    this.setState({ deck: this.props.navigation.state.params.deckTitle });
-  }
 
   saveCard = () => {
     const { question, answer, deck } = this.state;
@@ -71,7 +63,6 @@ class AddDeck extends Component {
         <TouchableOpacity style={styles.button} onPress={this.saveCard}>
           <Text style={{ color: "white" }}>Save Card</Text>
         </TouchableOpacity>
-        <Text>{JSON.stringify(this.props, null, 4)}</Text>
       </KeyboardAvoidingView>
     );
   }

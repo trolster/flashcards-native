@@ -6,6 +6,7 @@ import { View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import reducer from "./reducers";
 import { AddDeck, AddCard, DeckList, Deck, Quiz } from "./components";
+import { setLocalNotification } from "./utils/notifications";
 
 const store = createStore(reducer);
 
@@ -31,7 +32,7 @@ const Tabs = TabNavigator({
 const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
-    navigationOptions: { title: "FlashCards" }
+    navigationOptions: { title: "UdaciCards" }
   },
   DeckList: {
     screen: DeckList
@@ -48,6 +49,9 @@ const MainNavigator = StackNavigator({
 });
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <Provider store={store}>

@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from "../utils/notifications";
 import { connect } from "react-redux";
 import { Card } from "./";
 
@@ -13,18 +17,22 @@ class Quiz extends Component {
   state = {
     index: 0,
     score: 0,
-    done: false,
-    questions: this.props.decks[this.props.navigation.state.params.deckId]
-      .questions
+    done: false
   };
 
   handleAnswer = (correct = false) => {
+    const deckId = this.props.navigation.state.params.deckId;
+    const questions = this.props.decks[deckId].questions;
     let { score, index } = this.state;
-    const numberOfQuestions = this.state.questions.length;
-    index++;
-    done = index === numberOfQuestions;
+
     score = correct ? score + 1 : score;
+    index++;
+    done = index === questions.length;
     this.setState({ index, score, done });
+
+    if (done) {
+      clearLocalNotification().then(setLocalNotification);
+    }
   };
 
   restartQuiz = () => {
@@ -37,7 +45,9 @@ class Quiz extends Component {
   };
 
   render() {
-    const { index, score, done, questions } = this.state;
+    const deckId = this.props.navigation.state.params.deckId;
+    const questions = this.props.decks[deckId].questions;
+    const { index, score, done } = this.state;
     if (done) {
       return (
         <View style={styles.container}>

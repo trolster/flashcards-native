@@ -27,8 +27,13 @@ class Quiz extends Component {
     this.setState({ index, score, done });
   };
 
-  restart = () => {
+  restartQuiz = () => {
     this.setState({ index: 0, score: 0, done: false });
+  };
+
+  backToDeck = () => {
+    const deckId = this.props.navigation.state.params.deckId;
+    this.props.navigation.navigate("Deck", { deckId });
   };
 
   render() {
@@ -39,17 +44,27 @@ class Quiz extends Component {
           <Text>
             Result: {score}/{questions.length}
           </Text>
-          <TouchableOpacity style={styles.btnContainer} onPress={this.restart}>
-            <Text style={styles.btnTitle}>Try Again?</Text>
+          <TouchableOpacity
+            style={styles.btnContainer}
+            onPress={this.restartQuiz}
+          >
+            <Text style={styles.btnTitle}>Restart Quiz</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.btnContainer}
+            onPress={this.backToDeck}
+          >
+            <Text style={styles.btnTitle}>Back to Deck</Text>
           </TouchableOpacity>
         </View>
       );
     }
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <Text>
           Current Score: {score} out of {questions.length}
         </Text>
+        <Text>Questions Remaining: {questions.length - index}</Text>
         <Card card={questions[index]} handleAnswer={this.handleAnswer} />
       </View>
     );

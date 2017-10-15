@@ -8,8 +8,6 @@ class Deck extends Component {
       title: "Deck"
     };
   };
-  // Add Cards
-  // Start Quiz
   addNewQuestion = deckTitle => {
     this.props.navigation.navigate("AddCard", {
       deckTitle,
@@ -27,16 +25,19 @@ class Deck extends Component {
     const { decks, navigation } = this.props;
     console.log(navigation);
     const deck = decks[navigation.state.params.deckId];
+    const hasCards = !!deck.questions.length;
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{deck.title}</Text>
         <Text>There are {deck.questions.length} cards in this deck.</Text>
-        <TouchableOpacity
-          style={styles.btnContainer}
-          onPress={() => this.startQuiz(deck.title)}
-        >
-          <Text style={styles.btnTitle}>Start a Quiz</Text>
-        </TouchableOpacity>
+        {hasCards ? (
+          <TouchableOpacity
+            style={styles.btnContainer}
+            onPress={() => this.startQuiz(deck.title)}
+          >
+            <Text style={styles.btnTitle}>Start a Quiz</Text>
+          </TouchableOpacity>
+        ) : null}
         <TouchableOpacity
           style={styles.btnContainer}
           onPress={() => this.addNewQuestion(deck.title)}
@@ -62,6 +63,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#333",
+    borderRadius: 5,
+    marginTop: 15,
+    width: 240,
+    maxHeight: 40
+  },
+  btnDisabled: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ccc",
     borderRadius: 5,
     marginTop: 15,
     width: 240,

@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import tolower from "lodash.tolower";
 import { receiveDecks } from "../actions";
 import { getDecks, saveNewDeck } from "../utils/api";
 
@@ -20,7 +21,8 @@ class DeckList extends Component {
   }
 
   handlePress = title => {
-    this.props.navigation.navigate("Deck", { title });
+    const deckId = tolower(title);
+    this.props.navigation.navigate("Deck", { deckId });
   };
 
   render() {

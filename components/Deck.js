@@ -3,34 +3,37 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 
 class Deck extends Component {
-  // Add/Remove Cards
+  // Add Cards
   // Start Quiz
-  // See quiz results (latest quiz)
-  addNewQuestion = () => {
-    console.log("Adding card...");
+  addNewQuestion = deckTitle => {
+    this.props.navigation.navigate("AddCard", {
+      deckTitle,
+      update: () => this.refreshOnGoBack()
+    });
   };
   startQuiz = () => {
     console.log("quiz starting...");
   };
   render() {
     const { decks, navigation } = this.props;
-    const deck = decks[navigation.state.params.title];
+    console.log(navigation);
+    const deck = decks[navigation.state.params.deckId];
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{deck.title}</Text>
         <Text>There are {deck.questions.length} cards in this deck.</Text>
-        <TouchableOpacity style={styles.btnContainer} onPress={this.startQuiz}>
+        <TouchableOpacity
+          style={styles.btnContainer}
+          onPress={() => this.startQuiz(deck.title)}
+        >
           <Text style={styles.btnTitle}>Start a Quiz</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.btnContainer}
-          onPress={this.addNewQuestion}
+          onPress={() => this.addNewQuestion(deck.title)}
         >
           <Text style={styles.btnTitle}>Add New Question</Text>
         </TouchableOpacity>
-        {deck.latestResult ? (
-          <Text>Latest Quiz Result: {deck.latestResult}</Text>
-        ) : null}
       </View>
     );
   }

@@ -1,4 +1,5 @@
 import { AsyncStorage } from "react-native";
+import tolower from "lodash.tolower";
 import setDummyData from "./setDummyData";
 
 const STORAGE_KEY = "udaciCards:decks";
@@ -24,7 +25,7 @@ export function saveNewDeck(deckTitle) {
 export function saveNewCard(deckTitle, card) {
   return AsyncStorage.getItem(STORAGE_KEY).then(result => {
     const data = JSON.parse(result);
-    data[deckTitle].questions.push(card);
+    data[tolower(deckTitle)].questions.push(card);
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   });
 }

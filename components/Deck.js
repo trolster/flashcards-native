@@ -3,6 +3,11 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 
 class Deck extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: "Deck"
+    };
+  };
   // Add Cards
   // Start Quiz
   addNewQuestion = deckTitle => {
@@ -11,9 +16,13 @@ class Deck extends Component {
       update: () => this.refreshOnGoBack()
     });
   };
+
   startQuiz = () => {
-    console.log("quiz starting...");
+    this.props.navigation.navigate("Quiz", {
+      deckId: this.props.navigation.state.params.deckId
+    });
   };
+
   render() {
     const { decks, navigation } = this.props;
     console.log(navigation);

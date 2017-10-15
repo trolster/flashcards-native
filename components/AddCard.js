@@ -13,6 +13,12 @@ import { addCard } from "../actions";
 import { saveNewCard } from "../utils/api";
 
 class AddDeck extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: "Add New Question"
+    };
+  };
+
   state = {
     question: "",
     answer: "",
@@ -20,7 +26,7 @@ class AddDeck extends Component {
   };
 
   componentWillUnmount() {
-    this.setState({ question: "", answer: "" });
+    this.setState({ question: "", answer: "", deck: "" });
   }
 
   componentDidMount() {
@@ -30,7 +36,7 @@ class AddDeck extends Component {
   saveCard = () => {
     const { question, answer, deck } = this.state;
     const deckId = tolower(deck);
-    this.props.dispatch(addCard(deck, { question, answer }));
+    this.props.dispatch(addCard(deckId, { question, answer }));
     this.props.navigation.navigate("Deck", { deckId });
     saveNewCard(deck, { question, answer });
   };
@@ -38,7 +44,7 @@ class AddDeck extends Component {
   render() {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <Text style={{ fontSize: 30 }}>Add New Card to {this.state.deck}</Text>
+        <Text style={{ fontSize: 30 }}>FlashCard Details</Text>
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}

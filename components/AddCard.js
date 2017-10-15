@@ -47,6 +47,10 @@ class AddDeck extends Component {
         <Text style={{ fontSize: 30 }}>FlashCard Details</Text>
         <View style={styles.inputContainer}>
           <TextInput
+            multiLine={true}
+            autoGrow={true}
+            autoCapitalize="none"
+            autoFocus={true}
             style={styles.input}
             placeholder="Question"
             onChangeText={question => this.setState({ question })}
@@ -55,6 +59,9 @@ class AddDeck extends Component {
         </View>
         <View style={styles.inputContainer}>
           <TextInput
+            multiLine={true}
+            autoGrow={true}
+            autoCapitalize="none"
             style={styles.input}
             placeholder="Answer"
             onChangeText={answer => this.setState({ answer })}

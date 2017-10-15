@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  // AsyncStorage,
   StyleSheet,
   View,
   FlatList,
@@ -14,6 +15,7 @@ import { getDecks, saveNewDeck } from "../utils/api";
 
 class DeckList extends Component {
   async componentDidMount() {
+    // AsyncStorage.clear();
     const { dispatch } = this.props;
 
     const data = await getDecks();

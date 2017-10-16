@@ -72,7 +72,7 @@ class Quiz extends Component {
     return (
       <View style={styles.container}>
         <Text>
-          Current Score: {score} out of {questions.length}
+          Correct Answers: {score} out of {questions.length}
         </Text>
         <Text>Questions Remaining: {questions.length - index}</Text>
         <Card card={questions[index]} handleAnswer={this.handleAnswer} />

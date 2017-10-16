@@ -8,12 +8,6 @@ import { connect } from "react-redux";
 import { Card } from "./";
 
 class Quiz extends Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: "Quiz"
-    };
-  };
-
   state = {
     index: 0,
     score: 0,

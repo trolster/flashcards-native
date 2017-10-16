@@ -13,12 +13,6 @@ import { addCard } from "../actions";
 import { saveNewCard } from "../utils/api";
 
 class AddDeck extends Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: "Add New Question"
-    };
-  };
-
   state = {
     question: "",
     answer: "",

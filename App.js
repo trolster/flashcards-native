@@ -14,6 +14,7 @@ const Tabs = TabNavigator({
   DeckList: {
     screen: DeckList,
     navigationOptions: {
+      title: "Deck List",
       tabBarLabel: "Deck List",
       tabBarIcon: () => <MaterialCommunityIcons name="cards" size={30} />
     }
@@ -21,6 +22,7 @@ const Tabs = TabNavigator({
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
+      title: "New Deck",
       tabBarLabel: "New Deck",
       tabBarIcon: () => (
         <MaterialCommunityIcons name="cards-outline" size={30} />
@@ -31,20 +33,28 @@ const Tabs = TabNavigator({
 
 const MainNavigator = StackNavigator({
   Home: {
-    screen: Tabs,
-    navigationOptions: { title: "UdaciCards" }
+    screen: Tabs
   },
   DeckList: {
     screen: DeckList
   },
   Deck: {
-    screen: Deck
+    screen: Deck,
+    navigationOptions: {
+      title: "Deck"
+    }
   },
   AddCard: {
-    screen: AddCard
+    screen: AddCard,
+    navigationOptions: {
+      title: "Add New Question"
+    }
   },
   Quiz: {
-    screen: Quiz
+    screen: Quiz,
+    navigationOptions: {
+      title: "Quiz"
+    }
   }
 });
 

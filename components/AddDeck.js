@@ -49,7 +49,7 @@ class AddDeck extends Component {
           />
         </View>
         <TouchableOpacity style={styles.button} onPress={this.addDeck}>
-          <Text style={{ color: "white" }}>Submit</Text>
+          <Text style={{ color: "white" }}>Create Deck</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     );

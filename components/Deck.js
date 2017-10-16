@@ -3,12 +3,6 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 
 class Deck extends Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: "Deck"
-    };
-  };
-
   addNewQuestion = deckTitle => {
     this.props.navigation.navigate("AddCard", {
       deckTitle,

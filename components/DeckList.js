@@ -34,14 +34,21 @@ class DeckList extends Component {
         <Text style={styles.title}>Decks</Text>
         <FlatList
           data={Object.keys(this.props.decks)}
-          renderItem={({ item: title }) => (
-            <TouchableOpacity
-              style={styles.deckListItemContainer}
-              onPress={() => this.handlePress(title)}
-            >
-              <Text style={styles.deckTitle}>{title}</Text>
-            </TouchableOpacity>
-          )}
+          renderItem={({ item: title }) => {
+            const questions = this.props.decks[title].questions.length;
+            return (
+              <TouchableOpacity
+                style={styles.deckListItemContainer}
+                onPress={() => this.handlePress(title)}
+              >
+                <Text style={styles.deckTitle}>{title}</Text>
+                <Text style={{ color: "white" }}>
+                  {this.props.decks[title].questions.length}{" "}
+                  {questions === 1 ? "Card" : "Cards"} in the Deck
+                </Text>
+              </TouchableOpacity>
+            );
+          }}
           keyExtractor={item => item}
         />
       </View>
@@ -67,10 +74,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 15,
     width: 240,
-    height: 40
+    height: 70
   },
   deckTitle: {
-    fontSize: 20,
+    fontSize: 25,
     color: "white",
     backgroundColor: "transparent"
   }

@@ -51,8 +51,8 @@ class Quiz extends Component {
     if (done) {
       return (
         <View style={styles.container}>
-          <Text>
-            Result: {score}/{questions.length}
+          <Text style={styles.title}>
+            Result: {Math.floor(score / questions.length * 100)}% Correct
           </Text>
           <TouchableOpacity
             style={styles.btnContainer}

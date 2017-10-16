@@ -1,9 +1,10 @@
 import React from "react";
-import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { Provider } from "react-redux";
 import { TabNavigator, StackNavigator } from "react-navigation";
 import { View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+// our modules
 import reducer from "./reducers";
 import { AddDeck, AddCard, DeckList, Deck, Quiz } from "./components";
 import { setLocalNotification } from "./utils/notifications";
@@ -62,6 +63,7 @@ export default class App extends React.Component {
   componentDidMount() {
     setLocalNotification();
   }
+
   render() {
     return (
       <Provider store={store}>

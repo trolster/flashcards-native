@@ -7,10 +7,9 @@ import {
   Text
 } from "react-native";
 import { connect } from "react-redux";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import tolower from "lodash.tolower";
 import { receiveDecks } from "../actions";
-import { getDecks, saveNewDeck } from "../utils/api";
+import { getDecks } from "../utils/api";
 
 class DeckList extends Component {
   async componentDidMount() {
@@ -48,11 +47,9 @@ class DeckList extends Component {
               >
                 <Text style={styles.deckTitle}>{title}</Text>
                 <Text style={{ color: "white" }}>
-                  {questions.length} {questions.length === 1 ? (
-                    "Card"
-                  ) : (
-                    "Cards"
-                  )}{" "}
+                  {questions.length} {questions.length === 1
+                    ? "Card"
+                    : "Cards"}{" "}
                   in the Deck
                 </Text>
               </TouchableOpacity>

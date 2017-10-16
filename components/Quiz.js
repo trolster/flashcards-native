@@ -17,7 +17,7 @@ class Quiz extends Component {
   handleAnswer = (correct = false) => {
     const deckId = this.props.navigation.state.params.deckId;
     const questions = this.props.decks[deckId].questions;
-    let { score, index } = this.state;
+    let { score, index, done } = this.state;
 
     score = correct ? score + 1 : score;
     index++;

@@ -19,12 +19,13 @@ class Deck extends Component {
   render() {
     const { decks, navigation } = this.props;
     const deck = decks[navigation.state.params.deckId];
-    const hasCards = !!deck.questions.length;
+    const cardTotal = deck.questions.length;
+    const cardText = cardTotal === 1 ? "is 1 card" : `are ${cardTotal} cards`;
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{deck.title}</Text>
-        <Text>There are {deck.questions.length} cards in this deck.</Text>
-        {hasCards ? (
+        <Text>There {cardText} in this deck.</Text>
+        {cardTotal > 0 ? (
           <TouchableOpacity
             style={styles.btnContainer}
             onPress={() => this.startQuiz(deck.title)}

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { connect } from "react-redux";
+// our modules
 import {
   clearLocalNotification,
   setLocalNotification
 } from "../utils/notifications";
-import { connect } from "react-redux";
 import { Card } from "./";
 
 class Quiz extends Component {
@@ -14,7 +15,7 @@ class Quiz extends Component {
     done: false
   };
 
-  handleAnswer = (correct = false) => {
+  handleAnswer = correct => {
     const deckId = this.props.navigation.state.params.deckId;
     const questions = this.props.decks[deckId].questions;
     let { score, index, done } = this.state;
@@ -34,14 +35,14 @@ class Quiz extends Component {
   };
 
   backToDeck = () => {
-    const deckId = this.props.navigation.state.params.deckId;
-    this.props.navigation.navigate("Deck", { deckId });
+    this.props.navigation.goBack();
   };
 
   render() {
     const deckId = this.props.navigation.state.params.deckId;
     const questions = this.props.decks[deckId].questions;
     const { index, score, done } = this.state;
+    // Display Quiz results when done
     if (done) {
       return (
         <View style={styles.container}>
@@ -63,6 +64,7 @@ class Quiz extends Component {
         </View>
       );
     }
+    // Display flashcard
     return (
       <View style={styles.container}>
         <Text>

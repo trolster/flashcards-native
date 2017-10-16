@@ -9,14 +9,11 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import tolower from "lodash.tolower";
+// our modules
 import { addDeck } from "../actions";
 import { saveNewDeck } from "../utils/api";
 
 class AddDeck extends Component {
-  static navigationOptions = {
-    tabBarLabel: "Add Deck"
-  };
-
   state = {
     title: ""
   };
@@ -39,7 +36,7 @@ class AddDeck extends Component {
   render() {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <Text style={{ fontSize: 50 }}>Add New Deck</Text>
+        <Text style={styles.title}>Add New Deck</Text>
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
@@ -57,6 +54,10 @@ class AddDeck extends Component {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    marginTop: 40,
+    fontSize: 30
+  },
   container: {
     flex: 1,
     justifyContent: "center",
@@ -68,14 +69,14 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   input: {
-    borderBottomColor: "gray",
+    borderBottomColor: "#333",
     borderBottomWidth: 1,
     flex: 1
   },
   button: {
     marginTop: 40,
     padding: 10,
-    backgroundColor: "black",
+    backgroundColor: "#333",
     borderRadius: 5
   }
 });

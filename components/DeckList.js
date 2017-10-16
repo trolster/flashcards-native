@@ -8,13 +8,13 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import tolower from "lodash.tolower";
+// our modules
 import { receiveDecks } from "../actions";
 import { getDecks } from "../utils/api";
 
 class DeckList extends Component {
   async componentDidMount() {
     const { dispatch } = this.props;
-
     const data = await getDecks();
     dispatch(receiveDecks(JSON.parse(data)));
   }
@@ -25,6 +25,7 @@ class DeckList extends Component {
   };
 
   render() {
+    // In case there are no decks, we give some info.
     if (this.props.decks === null) {
       return (
         <View style={styles.container}>
@@ -38,15 +39,14 @@ class DeckList extends Component {
         <Text style={styles.title}>Decks</Text>
         <FlatList
           data={Object.values(this.props.decks)}
-          renderItem={({ item }) => {
-            const { questions, title } = item;
+          renderItem={({ item: { questions, title } }) => {
             return (
               <TouchableOpacity
                 style={styles.deckListItemContainer}
                 onPress={() => this.handlePress(title)}
               >
-                <Text style={styles.deckTitle}>{title}</Text>
-                <Text style={{ color: "white" }}>
+                <Text style={styles.btnTitle}>{title}</Text>
+                <Text style={styles.btnText}>
                   {questions.length} {questions.length === 1
                     ? "Card"
                     : "Cards"}{" "}
@@ -82,10 +82,12 @@ const styles = StyleSheet.create({
     width: 240,
     height: 70
   },
-  deckTitle: {
+  btnTitle: {
     fontSize: 25,
-    color: "white",
-    backgroundColor: "transparent"
+    color: "white"
+  },
+  btnText: {
+    color: "white"
   }
 });
 

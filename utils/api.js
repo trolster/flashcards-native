@@ -25,10 +25,10 @@ export function saveNewDeck(deckTitle) {
   );
 }
 
-export function saveNewCard(deckTitle, card) {
+export function saveNewCard(id, card) {
   return AsyncStorage.getItem(STORAGE_KEY).then(result => {
     const data = JSON.parse(result);
-    data[tolower(deckTitle)].questions.push(card);
+    data[id].questions.push(card);
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   });
 }

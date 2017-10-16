@@ -3,9 +3,9 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 
 class Deck extends Component {
-  addNewQuestion = deckTitle => {
+  addNewQuestion = title => {
     this.props.navigation.navigate("AddCard", {
-      deckTitle,
+      title,
       update: () => this.refreshOnGoBack()
     });
   };
@@ -44,29 +44,19 @@ class Deck extends Component {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 30
-  },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
+  },
+  title: {
+    fontSize: 30
   },
   btnContainer: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#333",
-    borderRadius: 5,
-    marginTop: 15,
-    width: 240,
-    maxHeight: 40
-  },
-  btnDisabled: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ccc",
     borderRadius: 5,
     marginTop: 15,
     width: 240,

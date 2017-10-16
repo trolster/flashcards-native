@@ -9,28 +9,28 @@ import {
 } from "react-native";
 import tolower from "lodash.tolower";
 import { connect } from "react-redux";
+// our modules
 import { addCard } from "../actions";
 import { saveNewCard } from "../utils/api";
 
 class AddDeck extends Component {
   state = {
     question: "",
-    answer: "",
-    deck: this.props.navigation.state.params.deckTitle
+    answer: ""
   };
 
   saveCard = () => {
-    const { question, answer, deck } = this.state;
-    const deckId = tolower(deck);
+    const deckId = tolower(this.props.navigation.state.params.title);
+    const { question, answer } = this.state;
     this.props.dispatch(addCard(deckId, { question, answer }));
-    this.props.navigation.navigate("Deck", { deckId });
-    saveNewCard(deck, { question, answer });
+    this.props.navigation.goBack();
+    saveNewCard(deckId, { question, answer });
   };
 
   render() {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <Text style={{ fontSize: 30 }}>FlashCard Details</Text>
+        <Text style={styles.title}>FlashCard Details</Text>
         <View style={styles.inputContainer}>
           <TextInput
             multiLine={true}
@@ -54,7 +54,7 @@ class AddDeck extends Component {
             value={this.state.answer}
           />
         </View>
-        <TouchableOpacity style={styles.button} onPress={this.saveCard}>
+        <TouchableOpacity style={styles.btn} onPress={this.saveCard}>
           <Text style={{ color: "white" }}>Save Card</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -63,6 +63,10 @@ class AddDeck extends Component {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    marginTop: 40,
+    fontSize: 30
+  },
   container: {
     flex: 1,
     justifyContent: "center",
@@ -74,14 +78,14 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   input: {
-    borderBottomColor: "gray",
+    borderBottomColor: "#333",
     borderBottomWidth: 1,
     flex: 1
   },
-  button: {
+  btn: {
     marginTop: 40,
     padding: 10,
-    backgroundColor: "black",
+    backgroundColor: "#333",
     borderRadius: 5
   }
 });

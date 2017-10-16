@@ -11,6 +11,7 @@ export default class Card extends Component {
   };
 
   render() {
+    // If we're showing the answer:
     if (this.state.showAnswer) {
       return (
         <View style={styles.container}>
@@ -37,12 +38,11 @@ export default class Card extends Component {
         </View>
       );
     }
+    // If we're showing the question:
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Question:</Text>
-        <Text style={styles.text}>
-          {JSON.stringify(this.props.card.question)}
-        </Text>
+        <Text style={styles.text}>{this.props.card.question}</Text>
         <TouchableOpacity style={styles.btnContainer} onPress={this.flipCard}>
           <Text style={styles.btnTitle}>Show Answer</Text>
         </TouchableOpacity>
@@ -52,17 +52,17 @@ export default class Card extends Component {
 }
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 15,
-    margin: 15
-  },
-  title: {
-    fontSize: 30
-  },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
+  },
+  title: {
+    fontSize: 30
+  },
+  text: {
+    fontSize: 15,
+    margin: 15
   },
   btnContainer: {
     flex: 1,

@@ -1,7 +1,7 @@
 # UdaciCards
 > Simple flashcard App built with React Native and Redux.
 
-### This app was only tested on iOS
+#### *This app was only tested on iOS*
 
 ## Installing / Getting started
 
@@ -13,13 +13,13 @@ yarn install && yarn start
 
 ### Using Expo
 
-This app has been developed using [Expo](https://expo.io/). A tool that enable developers to build and share truly native apps that work across both iOS and Android.
+This app has been developed using [Expo](https://expo.io/), which is a tool that enable developers to build and share native apps that work across both iOS and Android.
 
 To run the app in the iOS simpulator, take a look at the [Expo docs](https://docs.expo.io/versions/latest/introduction/installation.html#ios-simulator).
 
 ## App Summary
 
-The app shows you a list of flashcard decks and allows you to create new decks and new flashcards for the decks. When you select a deck you are given the opportunity to quiz yourself on that deck. The results are shown as a percentage of correct answers.
+The UdaciCards app is a mobile application (tested on iOS only) that allows users to study collections of flashcards. The app allows users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks. It also notifies the user daily, with a reminder to study.
 
 ## Licensing
 

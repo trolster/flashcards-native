@@ -34,14 +34,13 @@ class DeckList extends Component {
         </View>
       );
     }
-    const decks = Object.keys(this.props.decks);
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Decks</Text>
         <FlatList
-          data={Object.keys(this.props.decks)}
-          renderItem={({ item: title }) => {
-            const questions = this.props.decks[title].questions.length;
+          data={Object.values(this.props.decks)}
+          renderItem={({ item }) => {
+            const { questions, title } = item;
             return (
               <TouchableOpacity
                 style={styles.deckListItemContainer}
@@ -49,8 +48,12 @@ class DeckList extends Component {
               >
                 <Text style={styles.deckTitle}>{title}</Text>
                 <Text style={{ color: "white" }}>
-                  {this.props.decks[title].questions.length}{" "}
-                  {questions === 1 ? "Card" : "Cards"} in the Deck
+                  {questions.length} {questions.length === 1 ? (
+                    "Card"
+                  ) : (
+                    "Cards"
+                  )}{" "}
+                  in the Deck
                 </Text>
               </TouchableOpacity>
             );

@@ -15,11 +15,11 @@ yarn install && yarn start
 
 This app has been developed using [Expo](https://expo.io/), which is a tool that enable developers to build and share native apps that work across both iOS and Android.
 
-To run the app in the iOS simpulator, take a look at the [Expo docs](https://docs.expo.io/versions/latest/introduction/installation.html#ios-simulator).
+To run the app in the iOS simulator, take a look at the [Expo docs](https://docs.expo.io/versions/latest/introduction/installation.html#ios-simulator).
 
 ## App Summary
 
-The UdaciCards app is a mobile application (tested on iOS only) that allows users to study collections of flashcards. The app allows users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks. It also notifies the user daily, with a reminder to study.
+The UdaciCards app is a mobile application (tested on iOS only) that allows users to study collections of flashcards. Users can create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks. It also notifies the user daily, with a reminder to study.
 
 ## Licensing
 

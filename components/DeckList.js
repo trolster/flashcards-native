@@ -58,7 +58,7 @@ class DeckList extends Component {
               </TouchableOpacity>
             );
           }}
-          keyExtractor={item => item}
+          keyExtractor={item => item.title}
         />
       </View>
     );

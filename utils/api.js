@@ -1,12 +1,14 @@
 import { AsyncStorage } from "react-native";
 import tolower from "lodash.tolower";
-import setDummyData from "./setDummyData";
 
 const STORAGE_KEY = "udaciCards:decks";
 
 export function getDecks() {
   return AsyncStorage.getItem(STORAGE_KEY, (err, result) => {
-    return setDummyData(STORAGE_KEY, result);
+    if (result === null) {
+      return { decks: {} };
+    }
+    return JSON.parse(result);
   });
 }
 

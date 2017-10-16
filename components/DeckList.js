@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  // AsyncStorage,
   StyleSheet,
   View,
   FlatList,
@@ -15,7 +14,6 @@ import { getDecks, saveNewDeck } from "../utils/api";
 
 class DeckList extends Component {
   async componentDidMount() {
-    // AsyncStorage.clear();
     const { dispatch } = this.props;
 
     const data = await getDecks();
@@ -28,6 +26,14 @@ class DeckList extends Component {
   };
 
   render() {
+    if (this.props.decks === null) {
+      return (
+        <View style={styles.container}>
+          <Text>There are currently no decks in your app.</Text>
+          <Text>Add a new deck by selecting "New Deck" below.</Text>
+        </View>
+      );
+    }
     const decks = Object.keys(this.props.decks);
     return (
       <View style={styles.container}>
